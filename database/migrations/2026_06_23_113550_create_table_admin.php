@@ -9,22 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+      public function up(): void
     {
               Schema::create('tb_admin', function (Blueprint $table) {
            $table->id('Admin_Id');
-            $table->string('Email');
-            $table->string('Password');
-             $table->timestamps()->whereNull();
+            $table->string('email');
+            $table->string('password');
         });
 
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('table_admin');
     }
 };

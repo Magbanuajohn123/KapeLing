@@ -7,10 +7,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Admin extends Authenticatable
 {
     protected $table = 'tb_admin';
-
+    protected $primaryKey = 'Admin_Id';
+    public $timestamps = false;
     protected $fillable = [
-        'Email',
-        'Password'
+        'email',
+        'password'
     ];
 
     protected $hidden = [
