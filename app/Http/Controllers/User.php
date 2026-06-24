@@ -56,7 +56,10 @@ class User extends Controller
                 return redirect('home');
             } elseif (Auth::guard('admin')->attempt($credentials)) {
                 $request->session()->regenerate();
-                return redirect('adminDashboard');
+                return back()->with([
+                    'success'=>'Successfully Login. Proceeding to Dashboard',
+                    'redirect' => '/adminDashboard'
+                ]);
             }
 
             return back()->with('error', 'Invalid credentials');
@@ -70,5 +73,15 @@ class User extends Controller
     }
     public function dashboard(){
         return view('adminDashboard');
+    }
+    public function category(){
+        return view('adminCategory');
+    }
+    public function logout(){
+        Auth::logout();
+request()->session()->invalidate();
+request()->session()->regenerateToken();
+
+return redirect('/login')->with('success', 'Successfully Logout');
     }
 }

@@ -90,9 +90,22 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
-
-    @if(session('success'))
-    <div>Success</div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   @if(session('success'))
+    <script>
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true
+        });
+        setTimeout(() => {
+            window.location.href = "{{ session('redirect') }}";
+        }, 2000);
+    </script>
     @endif
     @if(session('error'))
     <div>error</div>
