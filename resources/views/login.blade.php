@@ -12,28 +12,18 @@
 
 </head>
 
-<body class="bg-gray-50 font-sans text-slate-900 antialiased min-h-screen flex items-center justify-center p-4">
+<body class="bg-gray-50  font-[Poppins] text-slate-900 antialiased min-h-screen flex items-center justify-center p-4">
 
     <div class="w-full max-w-lg">
         <!-- Back Navigation -->
 
 
         <!-- Main Card -->
-        <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-100 overflow-hidden">
-            <div class="p-8 md:p-10">
-                <!-- Header -->
-                <div class="mb-6">
-            <button onclick="history.back()"
-                class="group flex items-center text-sm font-medium text-slate-500 hover:text-brand transition-colors duration-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 transform group-hover:-translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
-        </div>
                 <div class="text-center mb-8">
                     <div class="inline-flex items-center justify-center w-20 h-20 rounded-xl mb-1">
                         <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-20 w-20">
                     </div>
+                    <h1 class="font-semibold text-2xl ">Welcome back</h1>
                     <p class="text-slate-500  text-sm">Join us today and start your journey</p>
                 </div>
 
@@ -70,16 +60,16 @@
                     <div class="pt-2">
                         <button type="submit"
                             class="w-full py-2 px-4 bg-[brown] hover:bg-brand-dark text-white font-bold rounded-lg shadow-lg shadow-brand/20 transition-all duration-200 transform active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2">
-                            Create Account
+                            Log in
                         </button>
                     </div>
 
                     <!-- Footer Link -->
                     <div class="text-center mt-6">
                         <p class="text-sm text-slate-600">
-                            Already have an account?
-                            <a href="/login" class="font-bold text-brand hover:underline decoration-2 underline-offset-4">
-                                Sign In
+                            Don't have an account?
+                            <a href="/" class="font-bold text-brand hover:underline decoration-2 underline-offset-4">
+                                Register
                             </a>
                         </p>
                     </div>

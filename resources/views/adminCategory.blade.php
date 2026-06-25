@@ -238,29 +238,194 @@
                                     {{ $c->Description }}
                                 </td>
                                 <td class="px-6 py-4 gap-2 flex">
-                                    <div class="bg-blue-500  cursor-pointer text-white p-2 rounded-xl">
-                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    <div class="bg-blue-500 p-2 cursor-pointer text-white  rounded-xl">
+                                        <button data-modal-target="edit-modal-{{ $c->Category_Id }}"
+                                            data-modal-toggle="edit-modal-{{ $c->Category_Id }}" type="button">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </button>
+
                                     </div>
-                                    <form action="{{ route('category.delete', $c->Category_Id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <div class="bg-red-500  cursor-pointer text-white p-2 rounded-xl ">
-                                            <button type="submit">
-                                                <i class="fa-solid fa-trash-can  cursor-pointer"></i>
-                                            </button>
-                                        </div>
-                                    </form>
+                                    <button data-modal-target="delete-modal-{{ $c->Category_Id }}"
+                                        data-modal-toggle="delete-modal-{{ $c->Category_Id }}"
+                                        class="bg-red-500 text-white p-2 rounded-xl">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
                                 </td>
 
                             </tr>
-                        @endforeach
+                            <div id="delete-modal-{{ $c->Category_Id }}" tabindex="-1"
+                                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                <div class="relative p-4 w-full max-w-md max-h-full">
+                                    <div
+                                        class="relative bg-neutral-primary-soft border border-default rounded-base shadow-sm p-4 md:p-6">
+                                        <button type="button"
+                                            class="absolute top-3 inset-e-2.5 text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+                                            data-modal-hide="delete-modal-{{ $c->Category_Id }}">
+                                            <svg class="w-5 h-5" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                fill="none" viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18 17.94 6M18 18 6.06 6" />
+                                            </svg>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                        <form action="{{ route('category.delete', $c->Category_Id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="p-4 md:p-5 text-center">
+                                                <svg class="mx-auto mb-4 text-fg-disabled w-12 h-12"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                    width="24" height="24" fill="none"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2"
+                                                        d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                </svg>
+                                                <h3 class="mb-6 text-body">Are you sure you want to delete this
+                                                    category product <span
+                                                        class="font-bold">{{ $c->Category_Name }}</span>
+                                                    from your account?</h3>
+                                                <div class="flex items-center space-x-4 justify-center">
+                                                    <button data-modal-hide="popup-modal" type="submit"
+                                                        class="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                                                        Yes, I'm sure
+                                                    </button>
+                                                    <button data-modal-hide="popup-modal" type="button"
+                                                        class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">No,
+                                                        cancel</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="edit-modal-{{ $c->Category_Id }}" tabindex="-1" aria-hidden="true"
+                                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                <div class="relative p-4 w-full max-w-md max-h-full">
+                                    <!-- Modal content -->
+                                    <div
+                                        class="relative bg-neutral-primary-soft border border-default rounded-base shadow-sm p-4 md:p-6">
+                                        <!-- Modal header -->
+                                        <div
+                                            class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
+                                            <h3 class="text-lg font-medium text-heading">
+                                                Update Category product
+                                            </h3>
+                                            <button type="button"
+                                                class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+                                                data-modal-hide="edit-modal-{{ $c->Category_Id }}">
+                                                <svg class="w-5 h-5" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    fill="none" viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2"
+                                                        d="M6 18 17.94 6M18 18 6.06 6" />
+                                                </svg>
+                                                <span class="sr-only">Close modal</span>
+                                            </button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <form action="{{ route('category.update', $c->Category_Id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="grid gap-4 grid-cols-2 py-4 md:py-6">
+                                                <div class="col-span-2">
+                                                    <label for="name"
+                                                        class="block mb-2.5 text-sm font-medium text-heading">Name</label>
+                                                    <input type="text" name="Category_Name" id="name"
+                                                        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                                        placeholder="Type product name" required=""
+                                                        value="{{ $c->Category_Name }}">
+                                                </div>
 
+
+                                                <div class="col-span-2">
+                                                    <label for="description"
+                                                        class="block mb-2.5 text-sm font-medium text-heading">Product
+                                                        Description</label>
+                                                    <textarea id="description" rows="4" name="Description"
+                                                        class=" bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body"
+                                                        placeholder="Write product description here">{{ $c->Description }}</textarea>
+                                                </div>
+
+                                            </div>
+                                            <!-- ICON PICKER -->
+                                            <div class="mb-4">
+                                                <label class="block mb-2.5 text-sm font-medium text-heading">
+                                                    Choose Icon:
+                                                </label>
+
+                                                <div class="grid grid-cols-4 gap-3">
+
+                                                    <label
+                                                        class="cursor-pointer text-center border rounded p-3 transition
+        hover:bg-gray-100
+        has-checked:border-blue-500
+        has-checked:bg-blue-100">
+
+                                                        <input type="radio" name="Category_Icon" value="fa-mug-hot"
+                                                            class="hidden">
+
+                                                        <i class="fa-solid fa-mug-hot text-2xl"></i>
+                                                    </label>
+
+                                                    <label
+                                                        class="cursor-pointer text-center border rounded p-3 transition
+        hover:bg-gray-100
+        has-checked:border-blue-500
+        has-checked:bg-blue-100">
+
+                                                        <input type="radio" name="Category_Icon" value="fa-burger"
+                                                            class="hidden">
+
+                                                        <i class="fa-solid fa-burger text-2xl"></i>
+                                                    </label>
+
+                                                    <label
+                                                        class="cursor-pointer text-center border rounded p-3 transition
+        hover:bg-gray-100
+        has-checked:border-blue-500
+        has-checked:bg-blue-100">
+
+                                                        <input type="radio" name="Category_Icon"
+                                                            value="fa-pizza-slice" class="hidden">
+
+                                                        <i class="fa-solid fa-pizza-slice text-2xl"></i>
+                                                    </label>
+
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="flex items-center space-x-4 border-t border-default pt-4 md:pt-6">
+                                                <button type="submit"
+                                                    class="inline-flex items-center  text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                                                    <svg class="w-4 h-4 me-1.5 -ms-0.5" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" fill="none" viewBox="0 0 24 24">
+                                                        <path stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2"
+                                                            d="M5 12h14m-7 7V5" />
+                                                    </svg>
+                                                    Add new product
+                                                </button>
+                                                <button data-modal-hide="crud-modal" type="submit"
+                                                    class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancel</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
 
         </div>
     </div>
+
+
 
     <!-- Final Fixed Navbar: Button stays visible on click in md/sm screens -->
     <!-- Final Navbar: structural fix + restored active link styling -->
@@ -269,6 +434,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @if (session('success'))
         <script>
             Swal.fire({

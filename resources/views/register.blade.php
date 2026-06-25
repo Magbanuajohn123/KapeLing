@@ -19,17 +19,6 @@
 
 
         <!-- Main Card -->
-        <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-100 overflow-hidden">
-            <div class="p-8 md:p-10">
-                <!-- Header -->
-                <div class="mb-6">
-            <button onclick="history.back()"
-                class="group flex items-center text-sm font-medium text-slate-500 hover:text-brand transition-colors duration-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 transform group-hover:-translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
-        </div>
                 <div class="text-center mb-8">
                     <div class="inline-flex items-center justify-center w-20 h-20 rounded-xl mb-1">
                         <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-20 w-20">
@@ -41,7 +30,7 @@
                     @csrf
 
                     <!-- Name Group -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
                         <div>
                             <label for="fname" class="block text-sm font-semibold text-slate-700 mb-1.5">First Name</label>
                             <input type="text" id="fname" name="Firstname" required

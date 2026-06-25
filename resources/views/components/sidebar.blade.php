@@ -1,12 +1,27 @@
 <aside id="top-bar-sidebar"
-        class="fixed top-0 left-0 z-30 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
-        aria-label="Sidebar">
-        <div class="h-full px-3 py-4 overflow-y-auto bg-neutral-primary-soft border-e border-default">
-            <a href="https://flowbite.com/" class="flex items-center ps-2.5 mb-10">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3" alt="Flowbite Logo" />
-                <span class="self-center text-lg text-black font-semibold whitespace-nowrap">Flowbite</span>
-            </a>
-            <ul class="space-y-2 font-medium">
+    class="fixed top-0 left-0 z-40 lg:z-30 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
+    aria-label="Sidebar">
+    <button type="button"
+            data-drawer-hide="top-bar-sidebar"
+            aria-controls="top-bar-sidebar"
+            class="sm:hidden absolute top-2 right-2 text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-10 h-10 inline-flex items-center justify-center z-50">
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+            </svg>
+            <span class="sr-only">Close menu</span>
+        </button>
+    <div class="h-full px-3 py-4 overflow-y-auto bg-neutral-primary-soft border-e border-default relative">
+
+        <!-- CLOSE BUTTON (Moved down to avoid being covered by the Navbar) -->
+
+
+        <!-- Sidebar Header / Logo -->
+        <div class="flex items-center ps-2.5 mb-10 mt-2">
+            <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3" alt="Logo" />
+            <span class="self-center text-lg text-black font-semibold whitespace-nowrap">Flowbite</span>
+        </div>
+
+        <ul class="space-y-2 font-medium">
                 <li>
                     <a href="#"
                         class="flex items-center px-2 mt-5 py-1.5 text-body rounded-base hover:bg-[#a40404bc] hover:text-white">
@@ -24,7 +39,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="/adminProduct"
                         class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
                         <i class="fa-solid fa-tag"></i>
                         <span class="flex-1 ms-3 whitespace-nowrap">Products</span>
@@ -73,5 +88,5 @@
                     </a>
                 </li>
             </ul>
-        </div>
-    </aside>
+    </div>
+</aside>
