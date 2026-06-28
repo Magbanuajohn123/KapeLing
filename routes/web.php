@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\RentController;
 /*
 |--------------------------------------------------------------------------
 | Public Routes
@@ -12,6 +12,8 @@ use App\Http\Controllers\ProductController;
 */
 Route::middleware('auth:web')->group(function () {
      Route::get('/home', [User::class, 'home'])->name('home.view');
+      Route::get('/userRent', [RentController::class, 'itemView'])->name('item.view');
+     Route::get('/viewProduct/{id}', [RentController::class, 'productView'])->name('product.view');
 });
 Route::middleware('auth:admin')->group(function () {
        Route::get('/adminDashboard', [User::class, 'dashboard'])
@@ -28,12 +30,18 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::post('/adminProduct-add', [ProductController::class, 'addProduct'])
         ->name('product.store');
+
     Route::delete('/adminCategory-delete/{id}', [CategoryController::class, 'deleteCategory'])
         ->name('category.delete');
+
+     Route::delete('/adminProduct-delete/{id}', [ProductController::class, 'deleteProduct'])
+        ->name('product.delete');
 
     Route::put('/adminCategory-update/{id}', [CategoryController::class, 'updateCategory'])
     ->name('category.update');
 
+    Route::put('/adminProduct-update/{id}', [ProductController::class, 'updateProduct'])
+    ->name('product.update');
 });
 Route::get('/', [User::class, 'register'])->name('register.view');
 

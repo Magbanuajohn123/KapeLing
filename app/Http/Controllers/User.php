@@ -53,11 +53,14 @@ class User extends Controller
 
             if (Auth::guard('web')->attempt($credentials)) {
                 $request->session()->regenerate();
-                return redirect('home');
+                return back()->with([
+                    'success' => 'Successfully Login. Proceeding to Home Page',
+                    'redirect' => 'home'
+                ]);
             } elseif (Auth::guard('admin')->attempt($credentials)) {
                 $request->session()->regenerate();
                 return back()->with([
-                    'success'=>'Successfully Login. Proceeding to Dashboard',
+                    'success' => 'Successfully Login. Proceeding to Dashboard',
                     'redirect' => '/adminDashboard'
                 ]);
             }
@@ -71,17 +74,20 @@ class User extends Controller
     {
         return view('home');
     }
-    public function dashboard(){
+    public function dashboard()
+    {
         return view('adminDashboard');
     }
-    public function category(){
+    public function category()
+    {
         return view('adminCategory');
     }
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
-request()->session()->invalidate();
-request()->session()->regenerateToken();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
 
-return redirect('/login')->with('success', 'Successfully Logout');
+        return redirect('/login')->with('success', 'Successfully Logout');
     }
 }

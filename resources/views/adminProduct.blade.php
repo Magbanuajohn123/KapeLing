@@ -97,15 +97,15 @@
             <!-- Modal toggle -->
             <div class="flex justify-end">
                 <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-                    class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+                    class="text-white bg-black box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
                     type="button">
-                    Add Product
+                    <i class="fa-solid fa-plus"></i>Add Product
                 </button>
             </div>
 
             <!-- Main modal -->
             <div id="crud-modal" tabindex="-1" aria-hidden="true"
-                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[100] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-100 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative p-4 w-full max-w-md max-h-full">
                     <!-- Modal content -->
                     <div
@@ -158,12 +158,17 @@
                                 <div class="col-span-2">
                                     <label for="name"
                                         class="block mb-2.5 text-sm font-medium text-heading">Product Image</label>
+                                    <input type="number" name="Product_Price" id="name"
+                                        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                        placeholder="Type product name" required="">
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="name"
+                                        class="block mb-2.5 text-sm font-medium text-heading">Product Image</label>
                                     <input type="file" name="Product_Image" id="name"
                                         class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                                         placeholder="Type product name" required="">
                                 </div>
-
-
                             </div>
                             <div class="flex items-center space-x-4 border-t border-default pt-4 md:pt-6">
                                 <button type="submit"
@@ -193,40 +198,187 @@
                                 Product name
                             </th>
                             <th scope="col" class="px-6 py-3 font-medium">
-                                Color
+                                Category
                             </th>
                             <th scope="col" class="px-6 py-3 font-medium">
-                                Category
+                                Description
                             </th>
                             <th scope="col" class="px-6 py-3 font-medium">
                                 Price
                             </th>
                             <th scope="col" class="px-6 py-3 font-medium">
-                                <span class="sr-only">Edit</span>
+                                Action
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $product )
+                        @foreach ($products as $product)
+                            <tr
+                                class="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
+                                <th scope="row" class="px-6 py-4 font-medium flex text-heading whitespace-nowrap">
+                                    <img class="h-10 mx-2" src="{{ asset('storage/' . $product->Product_Image) }}"
+                                        alt="">{{ $product->Product_Name }}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{ $product->category->Category_Name }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $product->category->Description }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $product->Product_Price }}
+                                </td>
+                                <td class="px-6 py-4 ">
+                                    <button data-modal-target="update-product-{{ $product->Product_Id }}"
+                                        data-modal-toggle="update-product-{{ $product->Product_Id }}"
+                                        class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+                                        type="button">
+                                        Edit
+                                    </button>
 
+                                    <button data-modal-target="delete-product-{{ $product->Product_Id }}"
+                                        data-modal-toggle="delete-product-{{ $product->Product_Id }}"
+                                        class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+                                        type="button">
+                                        Delete
+                                    </button>
 
-                        <tr class="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
-                            <th scope="row" class="px-6 py-4 font-medium flex text-heading whitespace-nowrap">
-                               <img class="h-10" src="{{ asset('storage/'.  $product->Product_Image) }}" alt="">{{ $product->Product_Name }}
-                            </th>
-                            <td class="px-6 py-4">
-                               {{ $product->category->Description }}
-                            </td>
-                            <td class="px-6 py-4">
-                                Laptop
-                            </td>
-                            <td class="px-6 py-4">
-                                $2999
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                            <div id="delete-product-{{ $product->Product_Id }}" tabindex="-1"
+                                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                <div class="relative p-4 w-full max-w-md max-h-full">
+                                    <div
+                                        class="relative bg-neutral-primary-soft border border-default rounded-base shadow-sm p-4 md:p-6">
+                                        <button type="button"
+                                            class="absolute top-3 indet-e-2.5 text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+                                            data-modal-hide="popup-modal">
+                                            <svg class="w-5 h-5" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                fill="none" viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18 17.94 6M18 18 6.06 6" />
+                                            </svg>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                        <div class="p-4 md:p-5 text-center">
+                                            <svg class="mx-auto mb-4 text-fg-disabled w-12 h-12" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                fill="none" viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                            </svg>
+                                            <form action="{{ route('product.delete', $product->Product_Id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <h3 class="mb-6 text-body">Are you sure you want to delete this product
+                                                    from your account?</h3>
+                                                <div class="flex items-center space-x-4 justify-center">
+                                                    <button data-modal-hide="popup-modal" type="submit"
+                                                        class="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                                                        Yes, I'm sure
+                                                    </button>
+                                                    <button data-modal-hide="popup-modal" type="button"
+                                                        class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">No,
+                                                        cancel</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="update-product-{{ $product->Product_Id }}" tabindex="-1" aria-hidden="true"
+                                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                <div class="relative p-4 w-full max-w-md max-h-full">
+                                    <!-- Modal content -->
+                                    <div
+                                        class="relative bg-neutral-primary-soft border border-default rounded-base shadow-sm p-4 md:p-6">
+                                        <!-- Modal header -->
+                                        <div
+                                            class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
+                                            <h3 class="text-lg font-medium text-heading">
+                                                Create new product
+                                            </h3>
+                                            <button type="button"
+                                                class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+                                                data-modal-hide="update-product-{{ $product->Product_Id }}">
+                                                <svg class="w-5 h-5" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    fill="none" viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2"
+                                                        d="M6 18 17.94 6M18 18 6.06 6" />
+                                                </svg>
+                                                <span class="sr-only">Close modal</span>
+                                            </button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <form action="{{ route('product.update',$product->Product_Id) }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="grid gap-4 grid-cols-2 py-4 md:py-6">
+                                                <div class="col-span-2">
+                                                    <label for="name"
+                                                        class="block mb-2.5 text-sm font-medium text-heading">Product Name</label>
+                                                    <input type="text" name="Product_Name" id="name"
+                                                        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                                        placeholder="Type product name" required=""
+                                                        value="{{ $product->Product_Name }}">
+                                                </div>
+
+                                                <div class="col-span-2">
+                                                    <label for="category"
+                                                        class="block mb-2.5 text-sm font-medium text-heading">Category</label>
+                                                    <select id="category" name="Category_Id"
+                                                        class="block w-full px-3  bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand  py-2.5 shadow-xs placeholder:text-body">
+                                                        @foreach ($categories as $category)
+                                                            <option value="{{ $category->Category_Id }}">
+                                                                {{ $category->Category_Name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-span-2">
+                                                    <label for="name"
+                                                        class="block mb-2.5 text-sm font-medium text-heading">Product
+                                                        Image</label>
+                                                        <p>Current Image</p>
+                                                        <img src="{{ asset('storage/'.$product->Product_Image) }}" alt="">
+                                                    <input type="file" name="Product_Image" id="name"
+                                                        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                                        placeholder="Type product name" required="" value="{{ $product->Product_Image }}">
+                                                </div>
+                                                <div class="col-span-2">
+                                                    <label for="name"
+                                                        class="block mb-2.5 text-sm font-medium text-heading">Product Price</label>
+                                                    <input type="text" name="Product_Price" id="name"
+                                                        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                                        placeholder="Type product name" required=""
+                                                        value="{{ $product->Product_Price }}">
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="flex items-center space-x-4 border-t border-default pt-4 md:pt-6">
+                                                <button type="submit"
+                                                    class="inline-flex items-center  text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                                                    <svg class="w-4 h-4 me-1.5 -ms-0.5" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" fill="none" viewBox="0 0 24 24">
+                                                        <path stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2"
+                                                            d="M5 12h14m-7 7V5" />
+                                                    </svg>
+                                                    Add new product
+                                                </button>
+                                                <button data-modal-hide="crud-modal" type="button"
+                                                    class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancel</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
                     </tbody>
                 </table>
