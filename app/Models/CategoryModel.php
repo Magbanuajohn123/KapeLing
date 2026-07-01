@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ProductModel;
 
 class CategoryModel extends Model
 {
@@ -16,4 +17,10 @@ class CategoryModel extends Model
         'Description',
         'Category_Icon'
     ];
+
+    // ✅ RELATIONSHIP (THIS IS WHAT YOU WERE MISSING)
+    public function products()
+    {
+        return $this->hasMany(ProductModel::class, 'Category_Id', 'Category_Id');
+    }
 }

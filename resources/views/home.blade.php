@@ -11,102 +11,40 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
         rel="stylesheet">
+        @livewireStyles
 </head>
 
-<body class="bg-[#ffffff] font-[Poppins] ">
-    <nav class="bg-neutral-primary fixed w-full z-20 top-0 inset-s-0 border-b border-default">
-        <div class="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="https://flowbite.com/" class="flex items-center space-x-1 rtl:space-x-reverse">
-                <img src="{{ asset('images/logo.png') }}" class="h-7" alt="Flowbite Logo" />
-                <span
-                    class="self-center text-xl font-[Poppins] text-heading font-semibold whitespace-nowrap">Kape<span>Ling</span></span>
-            </a>
-            <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <button type="button"
-                    class="flex text-sm bg-neutral-primary rounded-full md:me-0 focus:ring-4 focus:ring-neutral-tertiary"
-                    id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
-                    data-dropdown-placement="bottom">
-                    <span class="sr-only">Open user menu</span>
-                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-5.jpg" alt="user photo">
-                </button>
-                <!-- Dropdown menu -->
-                <div class="z-50 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44"
-                    id="user-dropdown">
-                    <div class="px-4 py-3 text-sm border-b border-default">
-                        <span class="block text-heading font-medium">Joseph McFall</span>
-                        <span class="block text-body truncate">name@flowbite.com</span>
+<body class="bg-[#ffffff] font-[Poppins]  ">
+    <x-navbar/>
+    <section class="pt-15 sm:pt-25 min-h-screen">
+        <div class="max-w-7xl p-4 mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+                <div class="pt-10 lg:pt-20">
+                    <p class="ms-2 text-[rgba(0,0,0,0.4)] text-center sm:text-start text-normal mb-4">EST. 2021 — SMALL-BATCH</p>
+                    <h1 class="text-3xl lg:text-7xl mb-4 text-center sm:text-start font-bold text-[#1A1A1A]">Quietly
+                        crafted
+                        coffee,
+                        <br>served slowly.
+                    </h1>
+                    <p class="mt-2 text-center sm:text-start mb-4 text-[rgba(0,0,0,0.4)]">Every cup at KapeLing is a
+                        small
+                        ritual — single-origin beans, <br> skilled baristas, and slow craft.
+                        Discover
+                        your new favorite,<br> delivered fresh to your door.</p>
+                    <div class="flex mt-3 items-center justify-center sm:justify-start gap-2">
+                        <button class="bg-[#f66738] border border-[#5e1f1fe5] p-2 rounded-2xl">Order Now</button>
+                        <button class="border border-[brown] p-2 rounded-2xl">Explore Menu</button>
                     </div>
-                    <ul class="p-2 text-sm text-body font-medium" aria-labelledby="user-menu-button">
-                        <li>
-                            <a href="#"
-                                class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Settings</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Earnings</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Sign
-                                out</a>
-                        </li>
-                    </ul>
                 </div>
-                <button data-collapse-toggle="navbar-user" type="button"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
-                    aria-controls="navbar-user" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                        height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                            d="M5 7h14M5 12h14M5 17h14" />
-                    </svg>
-                </button>
-            </div>
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-                <ul
-                    class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
-                    <li>
-                        <a href="#"
-                            class="block py-2 px-3 text-white bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0"
-                            aria-current="page">Home</a>
-                    </li>
-                    <li>
-                        <a href="/userRent "
-                            class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Menu</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Cart</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Order</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Gallery</a>
-                    </li>
-                </ul>
+                <div>
+                    <img src="{{ asset('images/background.jpg') }}" class="rounded-2xl mt-5 h-40 lg:h-130 w-full" alt="">
+                </div>
             </div>
         </div>
-    </nav>
-    <section class="pt-25 min-h-screen">
+    </section>
+    <section class="pt-25 sm:pt-25 min-h-screen">
         <div class="max-w-7xl p-4 mx-auto">
-            <h1 class="text-4xl lg:text-7xl text-center sm:text-start font-bold">Crafted With <br> Passion,
-                <br>Brewed For You
-            </h1>
-            <p class="mt-2 text-center sm:text-center">Every cup at KapeLing is a small ritual — single-origin beans, <br> skilled baristas, and slow craft.
-                Discover
-                your new favorite,<br> delivered fresh to your door.</p>
-            <div class="flex mt-3 items-center justify-center gap-2">
-                <button class="bg-[#f66738] border border-[#5e1f1fe5] p-2 rounded-2xl">Order Now</button>
-                <button class="border border-[brown] p-2 rounded-2xl">Explore Menu</button>
-            </div>
+            <livewire:product-filter />
         </div>
     </section>
     <!-- Final Fixed Navbar: Button stays visible on click in md/sm screens -->
@@ -115,35 +53,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const navbar = document.getElementById("navbar");
-
-            window.addEventListener("scroll", function() {
-                if (window.scrollY > 50) {
-                    navbar.classList.add(
-                        "bg-white/5",
-                        "backdrop-blur-xl",
-                        "border-b",
-                        "border-white/10",
-
-                    );
-                } else {
-                    navbar.classList.remove(
-                        "bg-white/10",
-                        "backdrop-blur-lg",
-                        "border-b",
-                        "border-white/10",
-                        "shadow-lg"
-                    );
-                }
-            });
-        });
-    </script>
 
     <!-- Active Link Highlighting Script (Scroll Spy) -->
 
-
+@livewireScripts
 </body>
 
 </html>

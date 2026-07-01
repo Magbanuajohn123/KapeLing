@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\ProductModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Psy\Readline\Hoa\Console;
@@ -72,7 +73,8 @@ class User extends Controller
     }
     public function home()
     {
-        return view('home');
+        $product = ProductModel::with('category')->get();
+        return view('home',compact('product'));
     }
     public function dashboard()
     {

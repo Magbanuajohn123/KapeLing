@@ -251,8 +251,8 @@
                                     <div
                                         class="relative bg-neutral-primary-soft border border-default rounded-base shadow-sm p-4 md:p-6">
                                         <button type="button"
-                                            class="absolute top-3 indet-e-2.5 text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-                                            data-modal-hide="popup-modal">
+                                            class="absolute top-3 left-90 indet-e-2.5 text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+                                            data-modal-hide="delete-product-{{ $product->Product_Id }}">
                                             <svg class="w-5 h-5" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 fill="none" viewBox="0 0 24 24">
